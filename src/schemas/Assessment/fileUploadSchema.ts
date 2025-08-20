@@ -5,7 +5,7 @@ export const fileUploadSchema = {
   properties: {
     resume: {
       type: "string",
-      validationMessage: en.assessment.questionnaire.errors.fileUpload,
+      validationMessage: en.assessment.questionnaire.errors.resume,
     },
   },
   required: ["resume"],

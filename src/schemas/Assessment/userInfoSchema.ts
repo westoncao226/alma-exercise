@@ -23,7 +23,7 @@ export const userInfoSchema = {
     countryOfCitizenship: {
       type: "string",
       enum: countries,
-      validationMessage: en.assessment.questionnaire.errors.countryCitizenship,
+      validationMessage: en.assessment.questionnaire.errors.countryOfCitizenship,
     },
     personalLink: { type: "string", maxLength: 200 },
   },

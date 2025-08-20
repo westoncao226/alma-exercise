@@ -34,15 +34,14 @@ const FileUpload = ({ data, handleChange, path, uischema }: ControlProps) => {
 
     const reader = new FileReader();
     reader.onload = () => {
-      const base64Data = reader.result as string;
-      handleChange(path, { name: uploadedFile.name, data: base64Data });
+      handleChange(path, uploadedFile.name);
     };
     reader.readAsDataURL(uploadedFile);
   };
 
   return data ? (
     <Typography sx={{ fontSize: "14px" }}>
-      {t("assessment.questionnaire.form.fileUpload.uploaded")} {data.name}
+      {t("assessment.questionnaire.form.fileUpload.uploaded")} {data}
     </Typography>
   ) : (
     <Grid sx={fileUploadStyle}>

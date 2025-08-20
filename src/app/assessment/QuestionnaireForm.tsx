@@ -107,6 +107,8 @@ const QuestionnaireForm = () => {
     const validate = ajv.compile(schema);
     const valid = validate(data);
 
+    console.log(data)
+
     if (!valid && validate.errors) {
       return validate.errors.map((error) => `${error.params.missingProperty}`);
     }
