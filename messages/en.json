@@ -8,7 +8,7 @@
       "error": "Please enter the correct username and password."
     },
     "buttons": {
-      "guest": "Try Alma",
+      "prospect": "Try Alma",
       "admin": "Admin Sign In",
       "signIn": "Sign In"
     },
@@ -58,14 +58,12 @@
         }
       },
       "errors": {
-        "userInfo": {
-          "firstName": "Please enter your first name.",
-          "lastName": "Please enter your last name.",
-          "email": "Please enter your email.",
-          "countryCitizenship": "Please enter your country of citizenship."
-        },
+        "firstName": "Please enter your first name.",
+        "lastName": "Please enter your last name.",
+        "email": "Please enter your email.",
+        "countryOfCitizenship": "Please enter your country of citizenship.",
         "visaCategories": "Please select at least one.",
-        "fileUpload": "Please upload your resume / cv.",
+        "resume": "Please upload your resume / cv.",
         "inquiry": "Please enter an inquiry."
       }
     },

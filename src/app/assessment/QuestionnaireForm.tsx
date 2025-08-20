@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { Stack, Typography } from "@mui/material";
 import { useTranslations } from "next-intl";
+import Ajv from "ajv";
 import { JsonForms } from "@jsonforms/react";
 import { rankWith, scopeEndsWith } from "@jsonforms/core";
 import { materialRenderers } from "@jsonforms/material-renderers";
@@ -32,6 +33,12 @@ const formQuestionDescriptionStyle = {
   textAlign: "center",
   width: "500px",
 };
+
+const formErrorStyle = {
+  fontSize: "14px",
+};
+
+const ajv = new Ajv({ allErrors: true, strict: false });
 
 const customRenderers = [
   ...materialRenderers,
@@ -89,34 +96,46 @@ const QuestionnaireForm = () => {
   const [visaCategoriesData, setVisaCategoriesData] = useState({});
   const [fileUploadData, setFileUploadData] = useState({});
   const [inquiryData, setInquiryData] = useState({});
-  const [userInfoErrors, setUserInfoErrors] = useState<Record<string, string>>(
-    {}
+  const [userInfoErrors, setUserInfoErrors] = useState<string[]>([]);
+  const [visaCategoriesErrors, setVisaCategoriesErrors] = useState<string[]>(
+    []
   );
-  const [visaCategoriesErrors, setVisaCategoriesErrors] = useState<
-    Record<string, string>
-  >({});
-  const [fileUploadErrors, setFileUploadErrors] = useState<
-    Record<string, string>
-  >({});
-  const [inquiryErrors, setInquiryErrors] = useState<Record<string, string>>(
-    {}
-  );
-  const [submit, setSubmit] = useState(false);
+  const [fileUploadErrors, setFileUploadErrors] = useState<string[]>([]);
+  const [inquiryErrors, setInquiryErrors] = useState<string[]>([]);
+
+  const validateForm = (data: any, schema: any): string[] => {
+    const validate = ajv.compile(schema);
+    const valid = validate(data);
+
+    if (!valid && validate.errors) {
+      return validate.errors.map((error) => `${error.params.missingProperty}`);
+    }
+    return [];
+  };
 
   const handleSubmitAssessment = () => {
-    // const userInfoError = validateForm(userInfoData, userInfoSchema);
-    // const visaCategoriesError = validateForm(visaCategoriesData, visaCategoriesSchema);
-    // const fileUploadError = validateForm(fileUploadData, fileUploadSchema);
-    // const inquiryError = validateForm(inquiryData, inquirySchema);
+    const userInfoError = validateForm(userInfoData, userInfoSchema);
+    const visaCategoriesError = validateForm(
+      visaCategoriesData,
+      visaCategoriesSchema
+    );
+    const fileUploadError = validateForm(fileUploadData, fileUploadSchema);
+    const inquiryError = validateForm(inquiryData, inquirySchema);
 
-    // setUserInfoErrors(userInfoError);
-    // setVisaCategoriesErrors(visaCategoriesError);
-    // setFileUploadErrors(fileUploadError);
-    // setInquiryErrors(inquiryError)
+    setUserInfoErrors(userInfoError);
+    setVisaCategoriesErrors(visaCategoriesError);
+    setFileUploadErrors(fileUploadError);
+    setInquiryErrors(inquiryError);
 
-    setSubmit(true);
+    const hasErrors =
+      userInfoError.length ||
+      visaCategoriesError.length ||
+      fileUploadError.length ||
+      inquiryError.length;
 
-    router.push(`${pathname}/confirmation`);
+    if (!hasErrors) {
+      router.push(`${pathname}/confirmation`);
+    }
   };
 
   return (
@@ -138,6 +157,12 @@ const QuestionnaireForm = () => {
             renderers={customRenderers}
             onChange={({ data }) => setUserInfoData(data)}
           />
+          {userInfoErrors.length > 0 &&
+            userInfoErrors.map((error, index) => (
+              <Typography key={index} color="error" sx={formErrorStyle}>
+                {t(`assessment.questionnaire.errors.${error}`)}
+              </Typography>
+            ))}
         </Stack>
       </Stack>
 
@@ -154,6 +179,11 @@ const QuestionnaireForm = () => {
             renderers={customRenderers}
             onChange={({ data }) => setVisaCategoriesData(data)}
           />
+          {visaCategoriesErrors.length > 0 && (
+            <Typography color="error" sx={formErrorStyle}>
+              {t(`assessment.questionnaire.errors.visaCategories`)}
+            </Typography>
+          )}
         </Stack>
       </Stack>
 
@@ -170,6 +200,12 @@ const QuestionnaireForm = () => {
             renderers={customRenderers}
             onChange={({ data }) => setFileUploadData(data)}
           />
+          {fileUploadErrors.length > 0 &&
+            fileUploadErrors.map((error, index) => (
+              <Typography key={index} color="error" sx={formErrorStyle}>
+                {t(`assessment.questionnaire.errors.${error}`)}
+              </Typography>
+            ))}
         </Stack>
       </Stack>
 
@@ -186,6 +222,12 @@ const QuestionnaireForm = () => {
             renderers={customRenderers}
             onChange={({ data }) => setInquiryData(data)}
           />
+          {inquiryErrors.length > 0 &&
+            inquiryErrors.map((error, index) => (
+              <Typography key={index} color="error" sx={formErrorStyle}>
+                {t(`assessment.questionnaire.errors.${error}`)}
+              </Typography>
+            ))}
         </Stack>
       </Stack>
 

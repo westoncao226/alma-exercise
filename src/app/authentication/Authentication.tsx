@@ -32,7 +32,7 @@ const Authentication = () => {
       </Typography>
 
       <Button
-        label={t("authentication.buttons.guest")}
+        label={t("authentication.buttons.prospect")}
         onClick={() => navigateHandler(t("authentication.pages.assessment"))}
       />
       <Button

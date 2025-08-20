@@ -7,23 +7,23 @@ export const userInfoSchema = {
     firstName: {
       type: "string",
       maxLength: 200,
-      validationMessage: en.assessment.questionnaire.errors.userInfo.firstName,
+      validationMessage: en.assessment.questionnaire.errors.firstName,
     },
     lastName: {
       type: "string",
       maxLength: 200,
-      validationMessage: en.assessment.questionnaire.errors.userInfo.lastName,
+      validationMessage: en.assessment.questionnaire.errors.lastName,
     },
     email: {
       type: "string",
       maxLength: 200,
-      validationMessage: en.assessment.questionnaire.errors.userInfo.email,
+      format: "email",
+      validationMessage: en.assessment.questionnaire.errors.email,
     },
     countryOfCitizenship: {
       type: "string",
       enum: countries,
-      validationMessage:
-        en.assessment.questionnaire.errors.userInfo.countryCitizenship,
+      validationMessage: en.assessment.questionnaire.errors.countryCitizenship,
     },
     personalLink: { type: "string", maxLength: 200 },
   },
