@@ -1,0 +1,109 @@
+{
+  "title": "Alma",
+  "authentication": {
+    "description": "Welcome to Alma",
+    "signIn": {
+      "userName": "Username",
+      "password": "Password",
+      "error": "Please enter the correct username and password."
+    },
+    "buttons": {
+      "guest": "Try Alma",
+      "admin": "Admin Sign In",
+      "signIn": "Sign In"
+    },
+    "pages": {
+      "assessment": "assessment",
+      "admin": "admin",
+      "signIn": "signIn"
+    }
+  },
+  "assessment": {
+    "questionnaire": {
+      "description": {
+        "firstLine": "Get An Assessment",
+        "secondLine": "Of Your Immigration Case"
+      },
+      "form": {
+        "userInfo": {
+          "question": "Want to understand your visa options?",
+          "description": "Submit the form below and our team of experienced attorneys will review your information and send a preliminary assesssent of your case based on your goals.",
+          "inputs": {
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "email": "Email",
+            "countryCitizenship": "Country of Citizenship",
+            "personalLink": "LinkedIn / Personal Website URL"
+          }
+        },
+        "visaCategories": {
+          "question": "Visa categories of interest?",
+          "inputs": {
+            "nonimmigrant": "O-1",
+            "employmentBasedFirstPreference": "EB-1A",
+            "employmentBasedSecondPreference": "EB-2 NIW",
+            "unsure": "I don't know"
+          }
+        },
+        "fileUpload": {
+          "question": "Resume / CV",
+          "input": "Upload file or drag and drop here",
+          "uploaded": "Uploaded file:"
+        },
+        "inquiry": {
+          "question": "How can we help you?",
+          "inputs": {
+            "moreInfo": "What is your current status and when does it expire? What is your past immigration history? Are you looking for long-term permanent residency or short-term employment visa or both? Are there any timeline consideration?"
+          }
+        }
+      },
+      "errors": {
+        "userInfo": {
+          "firstName": "Please enter your first name.",
+          "lastName": "Please enter your last name.",
+          "email": "Please enter your email.",
+          "countryCitizenship": "Please enter your country of citizenship."
+        },
+        "visaCategories": "Please select at least one.",
+        "fileUpload": "Please upload your resume / cv.",
+        "inquiry": "Please enter an inquiry."
+      }
+    },
+    "confirmation": {
+      "label": "Thank You",
+      "description": "Your information was submitted to our team of immigration attorneys. Expect an email from hello@tryalma.ai."
+    },
+    "buttons": {
+      "submit": "Submit",
+      "homepage": "Go Back to Homepage"
+    }
+  },
+  "admin": {
+    "tabs": {
+      "leads": {
+        "title": "Leads",
+        "filters": {
+          "search": "Search",
+          "status": "Status",
+          "noLeads": "No Matching Leads"
+        },
+        "table": {
+          "headers": {
+            "name": "Name",
+            "submitted": "Submitted",
+            "status": "Status",
+            "country": "Country"
+          },
+          "status": {
+            "pending": "PENDING",
+            "reachedOut": "REACHED_OUT"
+          }
+        }
+      },
+      "settings": {
+        "title": "Settings"
+      }
+    },
+    "username": "Admin"
+  }
+}
